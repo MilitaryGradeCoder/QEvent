@@ -1,27 +1,15 @@
-"use client";
 
-import { fetchEvents } from "@/services/fetchData";
-import { useEffect, useState } from "react";
 import Tag from "@/components/Tag";
-const { useParams } = require("next/navigation")
 
-const EventID = ()=>{
-    const [eventData, setEventData] = useState({})
-    const params = useParams();
-    const eventId = params.eventId;
-
-    useEffect(()=>{
-        if (typeof window !== undefined){
-        const getData = async()=>{
-            const data = await fetchEvents(`/${eventId}`);
-            // console.log(data);
-            setEventData(data);
-        }
-        getData();
-        }
-    }, [eventId])
-    return(
-    <div className="text-dark m-4 px-8 py-2.5">
+const EventID = async({params})=>{
+  const param = await params;
+  const id = param.eventId;
+  const url = `https://qevent-backend.labs.crio.do/events/${id}`;
+  
+  const response = await fetch(url);
+  const eventData = await response.json();
+  
+    return(<div className="text-dark m-4 px-8 py-2.5">
         <div>
            <img
             className="mb-10 shadow-lg m-auto"
@@ -54,7 +42,6 @@ const EventID = ()=>{
           </div>
         </div>
       </div>
-    
 
 )
 }

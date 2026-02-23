@@ -1,19 +1,11 @@
-"use client";
 
 import ArtistCard from "@/components/ArtistCard";
-import { useState, useEffect } from "react";
-import { fetchArtists } from "@/services/fetchData";
 
-const Artists = ()=>{
-    const [artistData, setArtistData] = useState([]);
+const Artists = async ()=>{
+    
+    const response = await fetch("https://qevent-backend.labs.crio.do/artists");
+    const artistData = await response.json();
 
-    useEffect(()=>{
-        const getData = async()=>{
-            const data = await fetchArtists();
-            setArtistData(data);
-        }
-        getData();
-    },[])
     return(
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 mb-32">
             {artistData.map((artist)=>{

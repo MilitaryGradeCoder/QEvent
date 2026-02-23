@@ -1,20 +1,9 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { fetchTags } from "@/services/fetchData";
 import Tag from "@/components/Tag";
 
-const Tags = ()=>{
+const Tags = async()=>{
 
-    const [tagsData, setTagsData] = useState([]);
-
-    useEffect(()=>{
-        const getData = async()=>{
-            const data = await fetchTags();
-            setTagsData(data);
-        }
-        getData();
-    },[])
+   const response = await fetch("https://qevent-backend.labs.crio.do/tags");
+   const tagsData = await response.json();
 
     return(
         <div className="h-screen flex flex-wrap justify-center items-center content-center gap-4">{tagsData.map((tag)=>{
