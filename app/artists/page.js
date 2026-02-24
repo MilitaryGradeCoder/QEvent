@@ -3,7 +3,7 @@ import ArtistCard from "@/components/ArtistCard";
 
 const Artists = async ()=>{
     
-    const response = await fetch("https://qevent-backend.labs.crio.do/artists");
+    const response = await fetch("https://qevent-backend.labs.crio.do/artists", {cache: "force-cache"});
     const artistData = await response.json();
 
     return(

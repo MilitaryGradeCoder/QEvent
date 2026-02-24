@@ -1,4 +1,6 @@
 import EventCard from "@/components/EventCard";
+import next from "next";
+import { revalidatePath } from "next/cache";
 
 const Events = async(props)=>{
 
@@ -6,7 +8,7 @@ const Events = async(props)=>{
     const artist = searchParams.artist;
     const tag = searchParams.tag;
     let eventsData = [];
-    const response = await fetch(`https://qevent-backend.labs.crio.do/events`);
+    const response = await fetch(`https://qevent-backend.labs.crio.do/events`, {cache: "force-cache"}, {next: {revalidate: 10}});
     const data = await response.json();
 
     if(artist){
