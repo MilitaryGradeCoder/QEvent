@@ -15,7 +15,7 @@ import { TfiTicket } from "react-icons/tfi";
 const Header = () => {
   const [session, setSession] = useState(false);
   const sessionStatus = useSession();
-  console.log(sessionStatus)
+  // console.log(sessionStatus)
 
   useEffect(()=>{
     if(sessionStatus.status === "authenticated"){
@@ -85,6 +85,16 @@ const Header = () => {
             </div>
             <p>Tags</p>
           </Link>
+
+          {session ? (<Link
+            href={"/create-event"}
+            className="flex items-center justify-center gap-2 hover:text-primary hover:scale-105 transition-all border-2 p-2 rounded-md hover:bg-red-500"
+          >
+            <div className="scale-110">
+              <FaRegHeart />
+            </div>
+            <p>Create Event</p>
+          </Link>) : null}
 
           {session ? (
             <button
