@@ -5,10 +5,10 @@ import { dummyEvents } from "@/constants/dummyEvents";
 
 function App() {
   return (
-    <div className="h-full">
+    <div className="h-full p-5">
       <SwiperComponent />
-
-      <h1 className="text-5xl font-bold max-sm:text-3xl bg-gradient-to-br from-orange-400 to-teal-600 bg-clip-text text-transparent mx-4">
+      <hr className="m-10 h-2 bg-slate-600"/>
+      <h1 className="text-5xl font-bold max-sm:text-3xl bg-gradient-to-br from-orange-400 to-teal-600 bg-clip-text text-transparent m-10">
         Explore Events
       </h1>
 

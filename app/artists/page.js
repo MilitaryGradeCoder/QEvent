@@ -7,7 +7,7 @@ const Artists = async ()=>{
     const artistData = await response.json();
 
     return(
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 mb-32 gap-5 mx-10">
             {artistData.map((artist)=>{
                 return (<div key={artist.name}><ArtistCard artistData={artist} /></div>)
             })

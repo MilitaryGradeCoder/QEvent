@@ -55,9 +55,9 @@ const CreateEvent = ()=>{
         postEventData(eventData);
     }
 
-    const postEventData = (eventData)=>{
+    const postEventData = async (eventData)=>{
         try{
-            const response = fetch("https://qevent-backend.labs.crio.do/events", {method: "POST",
+            const response = await fetch("https://qevent-backend.labs.crio.do/events", {method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -66,6 +66,8 @@ const CreateEvent = ()=>{
             if (!response.ok){
                 alert("Event creation failed.");
             }else{
+                const result = await response.json();
+                console.log(result);
                 router.push("/events");
             }
         }catch(err){
@@ -75,12 +77,12 @@ const CreateEvent = ()=>{
     useEffect(()=>{
         if(session.status === "unauthenticated"){
             router.replace("/");
-        }
+        } 
     },[session])
 
     return(
         <div className="flex flex-col justify-center items-center">
-            <h1 className="font-extrabold underline text-2xl my-10">Create and Publish Event</h1>
+            <h1 className="font-extrabold underline text-2xl m-10">Create and Publish Event</h1>
             <form onSubmit={(e)=>handleSubmit(e)} className="border rounded-xl p-10 flex flex-col justify-center items-start gap-5">
                 <div>
                     <label htmlFor="name">Name of the Event :</label>
